@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-left:25%;margin-right:25%;margin-bottom:15px">
+        <h2 class="text-center" style="margin-bottom:30px">Data Diri Pegawai</h2>
+        <form id="submitData" enctype="multipart/form-data" method="POST" action="/tambahdata">
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" class="form-control" id="nama" autocomplete="off" required
+                    placeholder="Masukkan nama" name="nama">
+            </div>
+            <div class="form-group">
+                <label>Tempat Lahir</label>
+                <input type="text" class="form-control" id="tempat_lahir" autocomplete="off" required
+                    placeholder="Masukkan tempat lahir" name="tempat_lahir">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Lahir</label>
+                <input type="date" class="form-control" id="tanggal_lahir" autocomplete="off" required
+                    placeholder="Masukkan tanggal lahir" name="tanggal_lahir">
+            </div>
+            <div class="form-group">
+                <label>Agama</label>
+                <input type="text" class="form-control" id="agama" autocomplete="off" required
+                    placeholder="Masukkan agama" name="agama">
+            </div>
+            <div class="form-group">
+                <label for="sel1">Jenis Kelamin</label>
+                <select class="form-control" id="sel1" name="sel1">
+                    <option>Laki laki</option>
+                    <option>Perempuan</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Status Keluarga</label>
+                <input type="text" class="form-control" id="keluarga" autocomplete="off" required
+                    placeholder="Masukkan status keluarga" name="keluarga">
+            </div>
+            <div class="form-group">
+                <label for="sel2">Penidikan yang dimiliki</label>
+                <select class="form-control" id="sel2" name="sel2">
+                    <option>SLTA</option>
+                    <option>SMK</option>
+                    <option>D3</option>
+                    <option>D4</option>
+                    <option>S1</option>
+                    <option>S2</option>
+                    <option>S3</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="sel3">Penidikan yang diakui</label>
+                <select class="form-control" id="sel3" name="sel3">
+                    <option>SLTA</option>
+                    <option>SMK</option>
+                    <option>D3</option>
+                    <option>D4</option>
+                    <option>S1</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tinggi Badan</label>
+                <input type="number" class="form-control" id="tinggi_badan" autocomplete="off"
+                    placeholder="Masukkan tinggi badan (dalam cm)" name="tinggi">
+            </div>
+            <div class="form-group">
+                <label>Berat Badan</label>
+                <input type="number" class="form-control" id="berat_badan" autocomplete="off"
+                    placeholder="Masukkan berat badan (dalam kg)" name="berat">
+            </div>
+            <div class="form-group">
+                <label>Unit Kerja</label>
+                <input type="text" class="form-control" id="unit_kerja" autocomplete="off" required
+                    placeholder="Masukkan unit kerja" name="unit">
+            </div>
+            <div class="form-group">
+                <label>Jabatan</label>
+                <input type="text" class="form-control" id="jabatan" autocomplete="off" required
+                    placeholder="Masukkan jabatan" name="jabatan">
+            </div>
+            <div class="form-group">
+                <label>Nomor Rekening</label>
+                <input type="text" class="form-control" id="no_rek" autocomplete="off" required
+                    placeholder="Masukkan nomor rekening" name="no_rek">
+            </div>
+            <div class="form-group">
+                <label>Foto Diri (.jpg)</label>
+                <input type="file" class="form-control" accept=".jpg" name="uploaded_image" id="uploaded_image"
+                    required placeholder="Masukkan foto">
+            </div>
+            <div class="text-right">
+                <a role="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalKembali">Kembali</a>
+                <input class="btn btn-success" type="submit" value="Submit" onclick="buttonRedirect()">
+            </div>
+            <div class="modal fade" id="ModalKembali" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Peringatan</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Data yang telah diisi akan hilang jika kembali</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/datapekerja" role="button" class="btn btn-danger">Kembali</a>
+                            <a role="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    function buttonRedirect(){
+        alert("Data akan ditambahkan");
+    }
+</script>
+
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Sistem PKWT Angkasa Pura</title>
+  <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/tab.css">
+  <link rel="stylesheet" href="/assets/search.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/assets/tab.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+    });
+  </script>
+</head>
+
+<body>
+  <%- include('./partials/header') %>
+    <ul class="nav navbar-nav">
+            <li><a href="/datapekerja">Data Pekerja</a></li>
+            <li class="active"><a href="/manajemenkontrak">Manajemen Kontrak</a></li>
+            <li><a href="/cuti">Cuti</a></li>
+            <li><a href="/sppd">SPPD (Perjalanan Dinas)</a></li>
+            <li><a href="/gajipegawai">Gaji</a></li>
+          </ul>
+    <%- include('./partials/footer') %>
+  <div class="container-fluid">
+    <form class="example" id="formwrap" style="max-width:60%" method="GET">
+      <input id="searchBox" type="text" placeholder="Search.." id="searchText">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <br>
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th width="15">No</th>
+          <th style="text-align:center">Nama<a class="sortButton" href="/manajemenkontrak/sort/NAMA"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th style="text-align:center">Kontrak 1</th>
+          <th style="text-align:center">Durasi</th>
+          <th style="text-align:center">Kontrak 2</th>
+          <th style="text-align:center">Durasi</th>
+          <th style="text-align:center">Status<a class="sortButton" href="/manajemenkontrak/sort/STATUS"><span
+            class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th style="text-align:center">Edit</th>
+        </tr>
+      </thead>
+      <%- resql %>
+    </table>
+  </div>
+</body>
+<script type="text/javascript">
+  document.getElementById("formwrap").addEventListener("submit", function (e) {
+    e.preventDefault();
+    window.location.href = "/manajemenkontrak/search/" + document.getElementById("searchBox").value;
+  });
+</script>
+
+</html>

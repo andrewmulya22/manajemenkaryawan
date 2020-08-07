@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Sistem PKWT Angkasa Pura</title>
+  <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/assets/tab.css">
+  <link rel="stylesheet" href="/assets/search.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+  <%- include('./partials/header') %>
+    <ul class="nav navbar-nav">
+            <li class="active"><a href="/datapekerja">Data Pekerja</a></li>
+            <li><a href="/manajemenkontrak">Manajemen Kontrak</a></li>
+            <li><a href="/cuti">Cuti</a></li>
+            <li><a href="/sppd">SPPD (Perjalanan Dinas)</a></li>
+            <li><a href="/gajipegawai">Gaji</a></li>
+          </ul>
+    <%- include('./partials/footer') %>
+  <div class="container-fluid">
+    <form class="example" id="formwrap" style="max-width:60%" method="GET">
+      <input id="searchBox" type="text" placeholder="Search.." id="searchText">
+      <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+    <br>
+    <table id="datapegawai" class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama<a class="sortButton" href="/datapekerja/sort/NAMA"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Tempat, Tanggal Lahir<a class="sortButton" href="/datapekerja/sort/TANGGAL_LAHIR"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Jenis Kelamin<a class="sortButton" href="/datapekerja/sort/JENIS_KEL"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Pendidikan yang diakui<a class="sortButton" href="/datapekerja/sort/PEND_DIAKUI"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Unit Kerja<a class="sortButton" href="/datapekerja/sort/UNIT"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Jabatan<a class="sortButton" href="/datapekerja/sort/JABATAN"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Mulai<a class="sortButton" href="/datapekerja/sort/TMT"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Berakhir<a class="sortButton" href="/datapekerja/sort/TS"><span
+                class="glyphicon glyphicon-arrow-down"></span></a></th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <%- resql %>
+    </table>
+    <div class="text-right">
+      <button class="btn btn-success" onclick="exportTableToExcel('datapegawai')" id="tombolgaji">Export to Excel</button>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  document.getElementById("formwrap").addEventListener("submit", function (e) {
+    e.preventDefault();
+    window.location.href = "/datapekerja/search/" + document.getElementById("searchBox").value;
+  });
+</script>
+
+<script>
+function exportTableToExcel(tableID, filename = 'Data Pegawai PKWT'){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById('datapegawai');
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}    
+             
+</script>    
+
+</html>

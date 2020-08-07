@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <p>PT. ANGKASA PURA I (PERSERO)</p>
+        <p>PROYEK PEMBANGUNAN BANDARA INTERNASIONAL</p>
+        <p>YOGYAKARTA</p>
+        <p class="text-center"><b>DAFTAR PENGHASILAN PERSONIL</b></p>
+        <p class="text-center"><b>TENAGA PKWT PROYEK PEMBANGUNAN BANDARA INTERNASIONAL YOGYAKARTA</b></p>
+        <p class="text-center"><b></b></p>
+
+        <table class="table table-bordered align-middle" style="table-layout: fixed;" id="tabelgaji">
+            <thead class="tablehead">
+                <tr>
+                    <th scope="col" width="3%" class="align-middle" rowspan="2">No</th>
+                    <th scope="col" width="15%" class="align-middle" rowspan="2">Nama</th>
+                    <th scope="col" width="15%" class="align-middle" rowspan="2">TMT</th>
+                    <th scope="col" width="15%" class="align-middle" rowspan="2">Nomor Kontrak</th>
+                    <th scope="col" width="4%" class="align-middle" rowspan="2">Dasar Pend.</th>
+                    <th scope="col" width="4%" class="align-middle" rowspan="2">Upah</th>
+                    <th scope="col" width="10%" class="align-middle" colspan="2">Tunjangan</th>
+                    <th scope="col" width="4%" class="align-middle" rowspan="2">Jumlah</th>
+                    <th scope="col" width="20%" class="align-middle" colspan="3">Potongan BPJS</th>
+                    <th scope="col" width="4%" class="align-middle" rowspan="2">Jml. Pot.</th>
+                    <th scope="col" width="7%" class="align-middle" rowspan="2">Jumlah dibayarkan</th>
+                    <th scope="col" width="14%" class="align-middle" rowspan="2">Nomor Rekening</th>
+                </tr>
+                <tr>
+                    <th class="align-middle">Transport</th>
+                    <th class="align-middle">Kom</th>
+                    <th class="align-middle">Ketenagakerjaan JHT=2%</th>
+                    <th class="align-middle">Ketenagakerjaan JP=1%</th>
+                    <th class="align-middle">Kesehatan(1%)</th>
+                </tr>
+            </thead>
+            <%- table %>
+        </table>
+    </div>
+
+    <div class="text-right" style="margin-right: 15px;color: white">
+         <a class="btn btn-danger" href="/gajipegawai" role="button">Kembali</a>
+         <button class="btn btn-success" onclick="exportTableToExcel('tabelgaji')" id="tombolgaji">Export to Excel</button>
+    </div>
+    <style>
+        table {
+            line-height: 200% !important;
+        }
+
+        .tablehead {
+            text-align: center;
+        }
+
+        body {
+            font-size: 9px;
+            line-height: 7px;
+            margin-top: 5px;
+        }
+
+        @media print {
+            @page {
+                size: A4 landscape;
+                /* DIN A4 standard, Europe */
+                margin: 0;
+            }
+
+            html,
+            body {
+                width: 210mm;
+                /* height: 297mm; */
+                height: 282mm;
+                font-size: 10px;
+                background: #FFF;
+                overflow: visible;
+            }
+
+            body {
+                padding-top: 15mm;
+            }
+        }
+    </style>
+<script>
+function exportTableToExcel(tableID, filename = 'Gaji Pegawai PKWT'){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById('tabelgaji');
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+    
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+    
+    // Create download link element
+    downloadLink = document.createElement("a");
+    
+    document.body.appendChild(downloadLink);
+    
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    
+        // Setting the file name
+        downloadLink.download = filename;
+        
+        //triggering the function
+        downloadLink.click();
+    }
+}    
+             
+</script>

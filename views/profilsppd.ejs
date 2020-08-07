@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+    <style>
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+    </style>
+    <div id="pdfcuti">
+        <div class="container" style="margin-top: 20px">
+            <h3 class="text-center" style="margin-right: 358px">SPPD Pekerja PKWT</h3>
+            <br />
+            <form class="form-horizontal" style="margin-left:20px">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="ID" class="control-label col-sm-5 ">Nama</label>
+                        <div class="form-control-static col-sm-7">
+                            <input type="text" class="classname" value="<%= nama %>" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <img src="/public/images/<%= foto %>" class="img-rounded" alt="Foto Diri" style="height:189px;width:142px">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="container">
+            <form class="form-horizontal" style="margin-left:20px;margin-right:432px">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nomor Surat</th>
+                            <th>Nomor KEP</th>
+                            <th>Kota</th>
+                            <th>Tanggal Keberangkatan</th>
+                            <th>Jumlah Hari</th>
+                        </tr>
+                    </thead>
+                    <%- table %>
+                </table>
+            </form>
+            <style>
+                .table {
+                    margin-left: 15px;
+                }
+            </style>
+        </div>
+    </div>
+    <div class="container">
+        <div class="text-right">
+            <a role="button" class="btn btn-danger" href="/sppd">Kembali</a>
+        </div>
+    </div>
+    <!-- <div class="container-fluid" style="margin-left:25%;margin-right:25%;margin-bottom:15px">
+<form>
+  <div class="form-group row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control classname" value="Demo" readonly>
+    </div>
+  </div>
+-->
+    <style>
+        input[readonly].classname {
+            background-color: transparent;
+            border: 0;
+            font-size: 1em;
+        }
+    </style>

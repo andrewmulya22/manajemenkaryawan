@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container-fluid" style="margin-left:25%;margin-right:25%;margin-bottom:15px">
+        <h2 class="text-center" style="margin-bottom:30px">Data Diri Pegawai</h2>
+        <form method="POST" action="/tambahuser">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" id="username" autocomplete="off" required
+                    placeholder="Masukkan username" name="username">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" class="form-control" id="password" autocomplete="off" required
+                    placeholder="Masukkan password" name="password">
+            </div>
+            <div class="form-group">
+                <label>Level Otoritas</label>
+                <input type="number" min="1" max="4" class="form-control" id="authlevel" autocomplete="off" required
+                    placeholder="Masukkan level otoritas" name="authlevel">
+            </div>
+            <div class="text-right">
+                <a role="button" class="btn btn-danger" href="/datapekerja">Kembali</a>
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    </body>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/form_kontrak.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-left:25%;margin-right:25%;margin-bottom:15px">
+        <h2 class="text-center" style="margin-bottom:30px">Kontrak Pegawai</h2>
+        <form id="SubmitKontrak" action="/<%= obj.NAMA %>/edit_kontrak" method="post">
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" class="form-control" id="nama" required placeholder="Masukkan nama" name="nama"
+                    value="<%= obj.NAMA %>" readonly>
+            </div>
+            <div class="form-group">
+                <label>Kontrak 1 (Tanggal Mulai)</label>
+                <input type="date" id="datepicker" class="datepicker form-control" id="tanggal_mulai1" required
+                    value="<%= obj.TM1 %>" name="tanggal_mulai1">
+            </div>
+            <div class="form-group">
+                <label>Kontrak 1 (Tanggal Selesai)</label>
+                <input type="date" id="datepicker2" class="datepicker form-control" id="tanggal_selesai1" required
+                    value="<%= obj.TS1 %>" name="tanggal_selesai1">
+            </div>
+            <div class="form-group">
+                <label>Nomor Kontrak 1</label>
+                <input type="text" class="form-control" id="nok1" required placeholder="Masukkan Nomor Kontrak"
+                    name="nok1" value="<%= obj.NOK1 %>">
+            </div>
+            <script>
+                $(".datepicker").datepicker({
+                    format: 'yyyy-mm-dd'
+                });  
+            </script>
+
+            <script>
+                var flag;
+                function tambahField() {
+                    if (flag != 1) {
+                        room = parseInt("<%= count1 %>", 10);
+                        console.log(room);
+                    }
+                    else room++;
+
+                    var objTo = document.getElementById('education_fields');
+                    var divtest = document.createElement("div");
+                    divtest.setAttribute("class", "form-group container-fluid removeclass" + room);
+                    var rdiv = 'removeclass' + room;
+                    divtest.innerHTML = '<div class="col-sm-3"><div class="form-group"><select class="form-control" id="adendum_ke"><option>Addendum Ke-</option><option>Addendum 1</option><option>Addendum 2</option><option>Addendum 3</option><option>Addendum 4</option><option>Addendum 5</option></select></div></div><div class="col-sm-4 nopadding"><div class="form-group"><input type="date" id="datepicker3" class="datepicker form-control" id="tanggal_adendum" required name="tanggal_adendum"></div></div><div class="col-sm-5 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="no_adendum" placeholder="Nomor Kontrak" name="no_adendum"><br><div class="input-group-btn"> <button class="btn btn-danger" type="button" onclick="removeField(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button></div></div></div></div><div class="clear"></div>';
+
+                    objTo.appendChild(divtest);
+                    flag = 1;
+                }
+
+                function removeField(rid) {
+                    $('.removeclass' + rid).remove();
+                }         
+            </script>
+            <style>
+                .panel {
+                    padding-left: 0px;
+                }
+            </style>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="education_fields">
+                        <div class="form-group container-fluid removeclass1">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <select class="form-control" id="adendum_ke">
+                                        <option>Addendum Ke-</option>
+                                        <option name="K1ADD1">1 (Pertama)</option>
+                                        <option name="K1ADD2">2 (Kedua)</option>
+                                        <option name="K1ADD3">3 (Ketiga)</option>
+                                        <option name="K1ADD4">4 (Keempat)</option>
+                                        <option name="K1ADD5">5 (Kelima)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 nopadding">
+                                <div class="form-group">
+                                    <input type="date" id="datepicker3" class="datepicker form-control"
+                                        id="tanggal_adendum" name="tanggal_adendum" value="<%= obj.K1ADD1 %>">
+                                </div>
+                            </div>
+                            <div class="col-sm-5 nopadding">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="no_adendum"
+                                            placeholder="Nomor Kontrak" name="no_adendum" value="<%= obj.NOK1ADD1 %>">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success" type="button" onclick="tambahField();">
+                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%- string1 %>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Kontrak 2 (Tanggal Mulai)</label>
+                <input type="date" id="datepicker" class="datepicker form-control" id="tanggal_mulai2"
+                    value="<%= obj.TM2 %>" name="tanggal_mulai2">
+            </div>
+            <div class="form-group">
+                <label>Kontrak 2 (Tanggal Selesai)</label>
+                <input type="date" id="datepicker2" class="datepicker form-control" id="tanggal_selesai2"
+                    value="<%= obj.TS2 %>" name="tanggal_selesai2">
+            </div>
+            <div class="form-group">
+                <label>Nomor Kontrak 2</label>
+                <input type="text" class="form-control" id="nok2" placeholder="Masukkan Nomor Kontrak" name="nok2"
+                    value="<%= obj.NOK2 %>">
+            </div>
+
+            <script>
+                $(".datepicker").datepicker({
+                    format: 'yyyy-mm-dd'
+                });  
+            </script>
+
+            <script>
+                function tambahField2() {
+                    if (flag != 1) {
+                        room = parseInt("<%= count1 %>", 10);
+                        console.log(room);
+                    }
+                    else room++;
+
+                    var objTo = document.getElementById('education_fields2');
+                    var divtest = document.createElement("div");
+                    divtest.setAttribute("class", "form-group container-fluid removeclass" + room);
+                    var rdiv = 'removeclass' + room;
+                    divtest.innerHTML = '<div class="col-sm-3"><div class="form-group"><select class="form-control"> id="adendum_ke"<option>Addendum Ke-</option><option>Addendum 1</option><option>Addendum 2</option><option>Addendum 3</option><option>Addendum 4</option><option>Addendum 5</option></select></div></div><div class="col-sm-4 nopadding"><div class="form-group"><input type="date" id="datepicker3" class="datepicker form-control" id="tanggal_adendum2" required name="tanggal_adendum2"></div></div><div class="col-sm-5 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="no_adendum2" placeholder="Nomor Kontrak" name="no_adendum2"><br><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="removeField(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+
+                    objTo.appendChild(divtest);
+                }
+
+                function removeField(rid) {
+                    $('.removeclass' + rid).remove();
+                }         
+            </script>
+            <style>
+                .panel {
+                    padding-left: 0px;
+                }
+            </style>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="education_fields2">
+                        <div class="form-group container-fluid removeclass1">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <select class="form-control" id="adendum_ke">
+                                        <option>Addendum Ke-</option>
+                                        <option name="K1ADD1">1 (Pertama)</option>
+                                        <option name="K1ADD2">2 (Kedua)</option>
+                                        <option name="K1ADD3">3 (Ketiga)</option>
+                                        <option name="K1ADD4">4 (Keempat)</option>
+                                        <option name="K1ADD5">5 (Kelima)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 nopadding">
+                                <div class="form-group">
+                                    <input type="date" id="datepicker3" class="datepicker form-control"
+                                        id="tanggal_adendum2" name="tanggal_adendum2" value="<%= obj.K2ADD1 %>">
+                                </div>
+                            </div>
+                            <div class="col-sm-5 nopadding">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="no_adendum2"
+                                            placeholder="Nomor Kontrak" name="no_adendum2" value="<%= obj.NOK2ADD1 %>">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-success" type="button" onclick="tambahField2();">
+                                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%- string2 %>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sel1">Status</label>
+                <select class="form-control" id="selstatus" name="selstatus">
+                    <option selected>Aktif</option>
+                    <option>Inaktif</option>
+                </select>
+            </div>
+            <div class="text-right">
+                <a role="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalKembali">Kembali</a>
+                <input class="btn btn-success" type="submit" value="Submit" onclick="submitButton()">
+            </div>
+            <div class="modal fade" id="ModalKembali" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Peringatan</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Data yang telah diisi akan hilang jika kembali</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/manajemenkontrak" role="button" class="btn btn-danger">Kembali</a>
+                            <a role="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    function submitButton() {
+        alert("Data berhasil diubah!");
+    }
+</script>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-left:25%;margin-right:25%;margin-bottom:15px">
+        <h2 class="text-center" style="margin-bottom:30px">Master Data Gaji</h2>
+        <form id="editGaji" method="post" action="/editgaji">
+            <div class="form-group">
+                <label>Gaji SLTA</label>
+                <input type="number" class="form-control" id="gajislta" name="gajislta" value="<%= hasil.SLTA %>">
+            </div>
+            <div class="form-group">
+                <label>Gaji SMK</label>
+                <input type="number" class="form-control" id="gajismk" name="gajismk" value="<%= hasil.SMK %>">
+            </div>
+            <div class="form-group">
+                <label>Gaji D-III</label>
+                <input type="number" class="form-control" id="gajid3" name="gajid3" value="<%= hasil.D3 %>">
+            </div>
+            <div class="form-group">
+                <label>Gaji D-IV</label>
+                <input type="number" class="form-control" id="gajid4" name="gajid4" value="<%= hasil.D4 %>">
+            </div>
+            <div class="form-group">
+                <label>Gaji S1</label>
+                <input type="number" class="form-control" id="gajis1" name="gajis1" value="<%= hasil.S1 %>">
+            </div>
+            <div class="form-group">
+                <label>Transport</label>
+                <input type="number" class="form-control" id="gajitrans" name="gajitrans"
+                    value="<%= hasil.TRANSPORT %>">
+            </div>
+            <div class="text-right">
+                <a role="button" class="btn btn-danger" href="/datapekerja">Kembali</a>
+                <input class="btn btn-success" type="submit" value="Submit" onclick="submitButton()">
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+    function submitButton() {
+        alert("Data berhasil diubah!");
+    }
+</script>

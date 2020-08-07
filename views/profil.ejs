@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/html2pdf.bundle.min.js"></script>
+    <script>
+        function func1(){
+            document.getElementById
+        }
+        window.onload=func1()
+    </script>
+</head>
+
+<body>
+    <style>
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+    </style>
+<div id="pdf_diri">
+    <div class="container" style="margin-top: 20px">
+        <h3 class="text-center" style="margin-right: 358px">Identitas Pekerja PKWT</h3>
+        <br />
+        <form class="form-horizontal" style="margin-left: 20px">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="ID" class="control-label col-sm-4 ">Nama</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= nama %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastName" class="control-label col-sm-4">Tempat, tanggal lahir</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= tempat_lahir %>, <%= tanggal_lahir %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="street" class="control-label col-sm-4">Agama</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= agama %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="city" class="control-label col-sm-4">Jenis Kelamin</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= jenis_kel %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Status Keluarga</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= status %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Pendidikan yang dimiliki</label>
+                    <div class="form-control-static col-sm-7">
+                        <input id="test1" type="text" class="classname" value="<%= pend_dimiliki %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Pendidikan yang diakui</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= pend_diakui %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Tinggi Badan</label>
+                    <div class="form-control-static col-lg-2">
+                        <input type="text" class="classname" value="<%= tinggi %>" readonly>
+                    </div>
+                    <div class="form-control-static col-lg-2">
+                        <input type="text" class="classname" value="cm" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Berat Badan</label>
+                    <div class="form-control-static col-sm-2">
+                        <input type="text" class="classname" value="<%= berat %>" readonly>
+                    </div>
+                    <div class="form-control-static col-sm-2">
+                        <input type="text" class="classname" value="kg" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Unit Kerja</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= unit %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">Jabatan</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= jabatan %>" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="state" class="control-label col-sm-4">No Rekening</label>
+                    <div class="form-control-static col-sm-7">
+                        <input type="text" class="classname" value="<%= no_rek %>" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="form-group">
+                    <img src="/public/images/<%= foto %>" class="img-rounded" alt="Foto Diri" style="height:189px;width:142px">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="container">
+        
+        <div class="text-right" style="margin-bottom:20px">
+            <a role="button" class="btn btn-default" href="/datapekerja">Kembali</a>
+            <input onclick="generatePDF()" type="button" class="btn btn-success" id="create_pdf" value="Generate PDF">
+            <input class="btn btn-primary" type="submit" value="Edit" onclick="editButton()">
+            <a role="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalHapus">Hapus</a>
+        </div>
+        <div class="modal fade" id="ModalHapus" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Peringatan</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Hapus data yang dipilih ?</p>
+                    </div>
+                    <form method="post" action="/datapekerja/<%= idnama %>">
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="submit" value="Hapus">Hapus</button>
+                        <a role="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        input[readonly].classname {
+            background-color: transparent;
+            border: 0;
+            font-size: 1em;
+            width:100%;
+        }
+    </style>
+    <script>
+    function submitButton() {
+        alert("Data berhasil dihapus!");
+    }
+    function editButton(){
+        location.href = '/<%= nama %>/edit';
+    }
+</script>
+</body>
+    <script>
+      function generatePDF() {
+        // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("pdf_diri");
+        // Choose the element and save the PDF for our user.
+        html2pdf()
+          .set({ html2canvas: { scale: 10 } })
+          .from(element)
+          .save();
+      }
+    </script>

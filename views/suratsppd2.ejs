@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sistem PKWT Angkasa Pura</title>
+  <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="/assets/html2pdf.bundle.min.js"></script>
+</head>
+    
+<body>
+<style>
+.form-horizontal .control-label{
+    text-align: left;
+}    
+</style>
+<style>
+input[readonly].classname{
+  background-color:transparent;
+  border: 0;
+  font-size: 1em; 
+  width: 100%;
+}
+</style>
+<div id="pdfkontrak">
+<div class="container header" style="margin-top: 20px">
+      <img src="/assets/header2.png" alt="header" style="width: 55%;height: 55%;margin-left: 61px" >
+      <br/>
+    <form class="form-horizontal" style="margin-left:20px">
+    <div class="col-lg-5">
+      <div class="form-group" style="margin-bottom: 1px">
+          <div class="form-control-static col-sm-4">
+           <input type="text" class="classname" value="" readonly>
+        </div>
+     </div>
+      <div class="form-group" style="margin-bottom: 1px">
+          <div class="form-control-static col-sm-4">
+           <input type="text" class="classname" value="" readonly>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom: 1px">
+        <label for="ID" class="control-label col-sm-2 ">Lembar </label>
+        <div class="form-control-static col-sm-4">
+           <input type="text" class="classname" value=": 2" readonly>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ID" class="control-label col-sm-2 ">Nomor   </label>
+        <div class="form-control-static col-sm-7">
+           <input type="text" class="classname" value=": <%= obj.NOSURAT1 %>" readonly>
+        </div>
+      </div>
+        </div>
+    <div class="col-lg-5" style="margin-left: -60px">
+        <div class="form-group" style="margin-bottom: 1px">
+           <label for="ID" class="control-label col-sm-4">Lampiran VI-B </label>
+        <div class="form-control-static col-sm-5">
+           <input type="text" class="classname" value=": Keputusan Direksi" readonly>
+        </div> 
+        </div>
+        <div class="form-group" style="margin-bottom: 1px">
+           <label for="ID" class="control-label col-sm-9">PT. ANGKASA PURA I (PERSERO)</label>
+        <div class="form-control-static col-sm-2">
+           <input type="text" class="classname" value="" readonly>
+        </div> 
+        </div>  
+        <div class="form-group" style="margin-bottom: 1px">
+           <label for="ID" class="control-label col-sm-2">Nomor    </label>
+        <div class="form-control-static col-sm-5">
+           <input type="text" class="classname" value=": <%= obj.NOSURAT2 %>" readonly>
+        </div> 
+        </div>  
+        <div class="form-group">
+           <label for="ID" class="control-label col-sm-2 ">Tanggal  </label>
+        <div class="form-control-static col-sm-5">
+           <input type="text" class="classname" value=": <%= obj.TANGGALSURAT %>" readonly>
+        </div> 
+        </div>  
+    </div>
+    </form>
+</div>
+
+<div class="container">
+    <form class="form-horizontal" style="margin-left:20px;margin-right:432px">
+        <h6 class="text-center"><b>RINCIAN PERHITUNGAN BIAYA PERJALANAN DINAS DALAM NEGERI</b></h6>
+    <table class="table table-bordered" id="tabelsppd" style="margin-left: 15px">
+    <thead class="">
+	        <th class="">No</th>
+	        <th class="">Nama</th>
+	        <th class="">Tingkat Gol Perjalanan</th>
+	        <th class="">Rincian Biaya</th>
+	        <th class="">Jumlah</th>
+        </thead>
+        <%- table %>
+	    <tr>
+	        <td scope="col" class="align-middle" colspan="4">Total</td>
+	        <td class="">Rp    <%= total %></td>
+	    </tr>
+	    <tr>
+	        <td scope="col" class="align-middle" colspan="2">Terbilang</td>
+	        <td scope="col" class="align-middle" colspan="3"><b><%= terbilang %></b></td>
+	    </tr>
+</table>
+<br>
+<div style="text-align: left;margin-left:428px" class="header">
+     <p><%= obj.KOTATTD %>, <%= today %></p>
+     <p>Shared Services Senior Manager</p>
+     <br><br><br>
+     <u><%= obj.SMANAGER %></u>
+</div>
+    <br>
+    </form>
+</div>
+
+</div>
+<style>
+.form-horizontal .control-label{
+    text-align: left;
+    font-weight: normal !important;
+}    
+</style>
+
+<style>
+	.no-yborder {
+		border-top: 0px !important;
+		border-bottom: 0px !important;
+	}
+	.no-top-border{
+		border-top: 0px !important;
+	}
+	.no-bottom-border{
+		border-bottom: 0px !important;
+	}
+	table.table-bordered{
+    border: 2px solid black;
+  }
+	table.table-bordered > thead > tr > th{
+	    border:1px solid black;
+	}
+	table.table-bordered > tbody > tr > td{
+	    border:1px solid black;
+	}
+    
+    table{
+        font-size: 10px;
+        color: black;
+    }
+    
+    .header{
+        font-size: 12px;
+        color: black;
+    }
+    
+    .bold{
+        font-weight: bold;
+    }
+    
+</style>
+<div class="container">
+     <form method="post" action="/sppd/<%= obj.NOSURAT1 %>">
+    <div class="text-right">
+      <button class="btn btn-danger" type="submit" value="Hapus">Hapus</button>
+      <input onclick="generatePDF()" type="button" class="btn btn-success" id="create_pdf" value="Generate PDF">
+      <a href="/sppd/surat2/<%= obj.NOSURAT1 %>" role="button" class="btn btn-primary">Previous Page</a>
+      <a href="/sppd" role="button" class="btn btn-default">Kembali</a>
+    </div>
+    </form>
+</div>
+
+<script>
+      function generatePDF() {
+        // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("pdfkontrak");
+        // Choose the element and save the PDF for our user.
+        html2pdf()
+          .set({ html2canvas: { scale: 10 } })
+          .from(element)
+          .save();
+      }
+</script>

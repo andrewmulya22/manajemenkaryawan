@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/tab.css">
+    <link rel="stylesheet" href="/assets/search.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/tab.js"></script>
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+    <ul class="nav navbar-nav">
+            <li><a href="/datapekerja">Data Pekerja</a></li>
+            <li><a href="/manajemenkontrak">Manajemen Kontrak</a></li>
+            <li><a href="/cuti">Cuti</a></li>
+            <li class="active"><a href="/sppd">SPPD (Perjalanan Dinas)</a></li>
+            <li><a href="/gajipegawai">Gaji</a></li>
+          </ul>
+    <%- include('./partials/footer') %>
+    <div class="container-fluid">
+        <form class="form-inline" id="submitSearch" action="/sppd" method="post">
+            <div class="form-group">
+                <label>Bulan :</label>
+                <select class="form-control" id="sel3" name="sel3">
+                    <option>Januari</option>
+                    <option>Februari</option>
+                    <option>Maret</option>
+                    <option>April</option>
+                    <option>Mei</option>
+                    <option>Juni</option>
+                    <option>Juli</option>
+                    <option>Agustus</option>
+                    <option>September</option>
+                    <option>Oktober</option>
+                    <option>November</option>
+                    <option>Desember</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Tahun :</label><input type="number" id="inputtahun" class="form-control" required
+                    placeholder="Masukkan tahun" name="inputtahun">
+            </div>
+            <button type="submit" value="SUBMIT"><i class="fa fa-search"></i></button>
+        </form>
+        <br>
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <%- table %>
+            <tr>
+                <td><b>Total</b></td>
+                <td><%= total %></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

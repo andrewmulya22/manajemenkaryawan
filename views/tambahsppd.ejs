@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sistem PKWT Angkasa Pura</title>
+    <link rel="shortcut icon" type="images/x-icon" href="https://ap1.co.id/frontend/images/material/favicon.ico">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="/assets/form_sppd.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid" style="margin-left:25%;margin-right:25%;margin-bottom:15px">
+        <h2 class="text-center" style="margin-bottom:30px">SPPD Pegawai PKWT</h2>
+        <form id="tambahsppd" action="/tambahsppd" method="post">
+            <div class="form-group">
+                <label>Nomor Surat</label>
+                <input type="text" class="form-control" id="nomorsurat1" autocomplete="off" required placeholder="Masukkan nomor surat"
+                    name="surat1">
+            </div>
+            <div class="form-group">
+                <label>Nomor KEP</label>
+                <input type="text" class="form-control" id="nomorsurat2" autocomplete="off" required placeholder="Masukkan nomor surat"
+                    name="surat2">
+            </div>
+            <div class="form-group">
+                <label>Tanggal KEP</label>
+                <input type="date" id="datepicker" class="datepicker form-control" id="tanggal_surat" required
+                    name="tanggal_surat">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Surat</label>
+                <input type="date" id="datepicker" class="datepicker form-control" id="tanggal_surat2" required
+                    name="tanggal_surat2">
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="education_fields">
+                        <div class="form-group container-fluid removeclass1">
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input type="text" class="form-control" id="nama" autocomplete="off" required placeholder="Masukkan nama"
+                                    name="daftarnama">
+                            </div>
+                            <button class="btn btn-success" type="button" onclick="tambahField();">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Jumlah Hari Dinas</label>
+                <input type="number" min="1" class="form-control" id="hrdinas" required
+                    placeholder="Masukkan jumlah hari dinas" name="jharidinas">
+            </div>
+            <div class="form-group">
+                <label>Jumlah Hari Kegiatan</label>
+                <input type="number" min="1" class="form-control" id="hrkegiatan" required
+                    placeholder="Masukkan jumlah hari kegiatan" name="jharikegiatan">
+            </div>
+            <div class="form-group">
+                <label>Tanggal Berangkat</label>
+                <input type="date" id="datepicker" class="datepicker form-control" id="tanggal_brgkt" required
+                    name="tgl_berangkat">
+            </div>
+            <div class="form-group">
+                <label>Kota Asal</label>
+                <input type="text" class="form-control" autocomplete="off" id="mksdperjalanan" required
+                    placeholder="Kota Asal" name="kotaasal">
+            </div>
+            <div class="form-group">
+                <label>Kota Tujuan</label>
+                <input type="text" class="form-control" autocomplete="off" id="mksdperjalanan" required
+                    placeholder="Kota Tujuan" name="kotatujuan">
+            </div>
+            <div class="form-group">
+                <label>Maksud Perjalanan Dinas</label>
+                <input type="text" class="form-control" autocomplete="off" id="mksdperjalanan" required
+                    placeholder="Maksud perjalanan dinas" name="maksudtujuan">
+            </div>
+            <div class="form-group">
+                <label>Alat Angkutan</label>
+                <input type="text" class="form-control" autocomplete="off" id="angkutan" required
+                    placeholder="Alat angkutan yang digunakan" name="transportasi">
+            </div>
+            <div class="form-group">
+                <label>Senior Manager</label>
+                <input type="text" class="form-control" autocomplete="off" id="smanager" required
+                    placeholder="Nama Senior Manager" name="smanager">
+            </div>
+            <div class="form-group">
+                <label>Project Manager</label>
+                <input type="text" class="form-control" autocomplete="off" id="pmanager" required
+                    placeholder="Nama Project Manager" name="pmanager">
+            </div>
+            <div class="form-group">
+                <label>Dikeluarkan di:</label>
+                <input type="text" class="form-control" autocomplete="off" id="kotattd" required
+                    placeholder="Tempat dikeluarkannya surat" name="kotattd">
+            </div>
+            <div class="form-group">
+                <label>Keterangan lain-lain</label>
+                <input type="text" class="form-control" autocomplete="off" id="ket" required placeholder="Keterangan lain-lain" name="keterangan">
+            </div>
+            <script>
+                $(".datepicker").datepicker({
+                    format: 'yyyy-mm-dd'
+                });  
+            </script>
+
+            <script>
+                function tambahField() {
+                    room++;
+                    var objTo = document.getElementById('education_fields');
+                    var divtest = document.createElement("div");
+                    divtest.setAttribute("class", "form-group container-fluid removeclass" + room);
+                    var rdiv = 'removeclass' + room;
+                    divtest.innerHTML = '<div class="form-group"><label>Nama</label><input type="text" class="form-control" id="nama" required placeholder="Masukkan nama" name="daftarnama"></div><button class="btn btn-danger" type="button" onclick="removeField(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div><div class="clear"></div>';
+
+                    objTo.appendChild(divtest);
+                }
+
+                function removeField(rid) {
+                    $('.removeclass' + rid).remove();
+                }         
+            </script>
+            <style>
+                .panel {
+                    padding-left: 0px;
+                }
+            </style>
+            <!--     <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="education_fields">
+            <div class="form-group container-fluid removeclass1">
+              <div class="col-sm-4">
+                <div class="form-group">
+                    <select class="form-control" id="adendum_ke">
+                      <option>Addendum Ke-</option>
+                      <option>Addendum 1</option>
+                      <option>Addendum 2</option>
+                      <option>Addendum 3</option>
+                      <option>Addendum 4</option>
+                      <option>Addendum 5</option>
+                      <option>Addendum 6</option>
+                      <option>Addendum 7</option>
+                    </select>
+                </div>
+              </div>
+            <div class="col-sm-4 nopadding">
+                <div class="form-group">
+                <div class="input-group">
+                <input type="date" id="datepicker3" class="datepicker form-control" id="tanggal_adendum" required name="tanggal_adendum">
+                <div class="input-group-btn">
+                      <button class="btn btn-success" type="button"  onclick="tambahField();"> 
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 
+                      </button>
+                </div>
+                </div>
+                </div>
+            </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label>Kontrak 2 (Tanggal Mulai)</label>
+        <input type="date" id="datepicker" class="datepicker form-control" id="tanggal_lahir" required name="tanggal_lahir">
+      </div>
+      <div class="form-group">
+        <label>Kontrak 2 (Tanggal Selesai)</label>
+        <input type="date" id="datepicker2" class="datepicker form-control" id="tanggal_lahir" required name="tanggal_lahir">
+      </div>
+-->
+            <div class="text-right">
+                <a role="button" class="btn btn-danger" data-toggle="modal" data-target="#ModalKembali">Kembali</a>
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+            <div class="modal fade" id="ModalKembali" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"><b>Peringatan</b></h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Data yang telah diisi akan hilang jika kembali</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="/sppd" role="button" class="btn btn-danger">Kembali</a>
+                            <a role="button" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    function buttonRedirect(){
+        alert("Data akan ditambahkan");
+    }
+</script>
+
+</html>
